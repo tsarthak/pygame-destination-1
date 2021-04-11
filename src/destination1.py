@@ -4,7 +4,7 @@ import logging
 import logging.handlers
 
 logging.basicConfig(
-    format="[%(asctime)s] [%(levelname)-10s] %(message)s", level=logging.DEBUG)
+    format="[%(asctime)s] [%(levelname)-10s] %(message)s", level=logging.INFO)
 
 def main():
     # init the python game module.
@@ -18,7 +18,7 @@ def main():
 
     logging.info("Game initialized. Starting..")
 
-    # Set a logo
+    # Set a logo. Recommended file formats for images are .jpeg and .png
     game_logo_path = os.path.join(os.path.dirname(
         __file__), "..", "resources/my_game_icon.jpeg")
     logging.debug("Icon resource path - {}".format(game_logo_path))
@@ -31,15 +31,13 @@ def main():
     pygame.display.set_caption("MyGame")
 
     # set up the window of the game
-    screen = pygame.display.set_mode(size=(500, 500), flags=pygame.SCALED|pygame.RESIZABLE)
+    screen = pygame.display.set_mode(size=(200, 200))
     game_running = True
 
     while game_running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_running = False
-
-    return
 
 
 if __name__ == "__main__":
