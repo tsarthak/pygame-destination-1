@@ -2,6 +2,7 @@ import pygame as pg
 import os
 import logging
 import logging.handlers
+import math
 
 logging.basicConfig(
     format="[%(asctime)s] [%(levelname)-10s] %(message)s", level=logging.INFO)
@@ -125,20 +126,39 @@ def main():
     # set the background
     set_background(display_surface, colors['white'])
 
-    # sample : draw lines
-    draw_sample_lines(display_surface)
+    # # sample : draw lines
+    # draw_sample_lines(display_surface)
 
-    # sample : draw rectangle
-    draw_rectangle(display_surface)
+    # # sample : draw rectangle
+    # draw_rectangle(display_surface)
 
-    # sample : draw triangle
-    draw_triangle(display_surface)
+    # # sample : draw triangle
+    # draw_triangle(display_surface)
 
-    # sample : draw a polygon
-    draw_polygon(display_surface)
+    # # sample : draw a polygon
+    # draw_polygon(display_surface)
 
-    # sample : draw circle
-    draw_circle(display_surface)
+    # # sample : draw circle
+    # draw_circle(display_surface)
+    x_start = 200
+    y_start = 200
+    r_72 = math.radians(72)
+    r_54 = math.radians(54)
+
+    side = 50
+    points = [
+        (x_start, y_start)
+    ]
+    points.append((points[0][0] + side, y_start))
+    points.append((points[1][0] + side * math.cos(r_72),
+                  points[1][1] - side * math.sin(r_72)))
+    points.append((points[2][0] - side * math.sin(r_54),
+                  points[2][1] - side * math.cos(r_54)))
+    points.append((points[3][0] - side * math.sin(r_54),
+                  points[3][1] + side * math.cos(r_54)))
+    print(points)
+
+    pg.draw.polygon(display_surface, colors['black'], points)
 
     game_running = True
     while game_running:
